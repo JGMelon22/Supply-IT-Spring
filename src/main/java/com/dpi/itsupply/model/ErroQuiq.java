@@ -27,7 +27,7 @@ public class ErroQuiq {
     @Column(name = "data_padronizada", columnDefinition = "DATE", nullable = false)
     private LocalDate dataPadronizada; // Data 2
 
-    @Column(name = "mes", columnDefinition = "CHAR(3)", nullable = false)
+    @Column(name = "mes", columnDefinition = "ENUM", nullable = false)
     @Enumerated(EnumType.STRING)
     private Mes mes;
 
@@ -40,7 +40,7 @@ public class ErroQuiq {
     @Column(name = "data_erro", columnDefinition = "DATETIME", nullable = false)
     private LocalDateTime dataErro;
 
-    @Column(name = "plataforma", columnDefinition = "CHAR(5)", nullable = false)
+    @Column(name = "plataforma", columnDefinition = "ENUM", nullable = false)
     @Enumerated(EnumType.STRING)
     private Plataforma plataforma;
 
@@ -68,7 +68,7 @@ public class ErroQuiq {
     @Column(name = "responsavel_erro", columnDefinition = "VARCHAR(20) DEFAULT 'Em Análise'", nullable = false)
     private String responsavelErro;
 
-    @Column(name = "status_erro", columnDefinition = "VARCHAR(11) DEFAULT 'EM_ANALISE'", nullable = false)
+    @Column(name = "status_erro", columnDefinition = "ENUM DEFAULT 'EM_ANALISE'")
     @Enumerated(EnumType.STRING)
     private StatusErro statusErro;
 
@@ -78,6 +78,7 @@ public class ErroQuiq {
     @Column(name = "responsavel_analise", columnDefinition = "VARCHAR(20)", nullable = true)
     private String responsavelAnalise;
 
-    @Column(name = "status_analise", columnDefinition = "VARCHAR(11)", nullable = true)
+    @Column(name = "status_analise", columnDefinition = "ENUM DEFAULT 'EM_ANALISE'")
+    @Enumerated(EnumType.STRING)
     private StatusAnalise statusAnalise;
 }
