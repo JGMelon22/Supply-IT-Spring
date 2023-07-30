@@ -1,4 +1,4 @@
-CREATE TABLE erros_quiq
+CREATE TABLE IF NOT EXISTS erros_quiq
 (
   id INT NOT NULL AUTO_INCREMENT,
   ano SMALLINT UNSIGNED NOT NULL,
@@ -17,10 +17,8 @@ CREATE TABLE erros_quiq
   plataforma ENUM('IFOOD','RAPPI') NOT NULL,
   responsavel_analise VARCHAR(20) DEFAULT NULL,
   responsavel_erro VARCHAR(20) NOT NULL DEFAULT 'Em Análise',
-  status_analise ENUM('CONCLUIDO','EM_ANALISE') DEFAULT 'EM_ANDAMENTO',
+  status_analise ENUM('CONCLUIDO','EM_ANALISE') DEFAULT 'EM_ANALISE',
   status_erro ENUM('CONCLUIDO','EM_ANDAMENTO','ON_HOLD') DEFAULT 'EM_ANDAMENTO',
-  CONSTRAINT pk_erros_quiq PRIMARY KEY(id)
+  CONSTRAINT pk_erros_quiq PRIMARY KEY(id),
+  INDEX idx_erros_quiq_id (id)
 );
-
-CREATE INDEX idx_erros_quiq_id
-	ON erros_quiq(id);
