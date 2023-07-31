@@ -21,8 +21,8 @@ public class ErroQuiqController {
     public ResponseEntity<List<ErroQuiq>> getAllErrosQuiq() {
 
         List<ErroQuiq> errosQuiq = erroQuiqService.listAll();
-        return erroQuiqService.listAll() != null
-                ? ResponseEntity.status(HttpStatus.OK).body(errosQuiq)
-                : ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+        return errosQuiq.isEmpty()
+                ? ResponseEntity.status(HttpStatus.NO_CONTENT).build()
+                : ResponseEntity.status(HttpStatus.OK).body(errosQuiq);
     }
 }

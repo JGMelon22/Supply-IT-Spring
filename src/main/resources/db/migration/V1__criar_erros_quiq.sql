@@ -22,3 +22,4 @@ CREATE TABLE IF NOT EXISTS erros_quiq
   CONSTRAINT pk_erros_quiq PRIMARY KEY(id),
   INDEX idx_erros_quiq_id (id)
 );
+
