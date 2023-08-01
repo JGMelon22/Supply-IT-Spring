@@ -1,17 +1,18 @@
 package com.dpi.itsupply.controller;
 
+import com.dpi.itsupply.dto.ErroQuiqRecordDto;
 import com.dpi.itsupply.model.ErroQuiq;
+import com.dpi.itsupply.repository.ErroQuiqRepository;
 import com.dpi.itsupply.service.ErroQuiqService;
+import jakarta.validation.Valid;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.scheduling.annotation.Async;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api")
@@ -33,5 +34,13 @@ public class ErroQuiqController {
         return erroQuiq != null
                 ? ResponseEntity.status(HttpStatus.OK).body(erroQuiq)
                 : ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+    }
+
+    @DeleteMapping("/erros-quiq/{id}")
+    public ResponseEntity<ErroQuiq> deleteErroQuiq(@PathVariable(value = "id") Integer id) {
+        if (id == null || id <= 0)
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        erroQuiqService.delete(id);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 }
