@@ -4,6 +4,7 @@ import com.dpi.itsupply.model.enums.Mes;
 import com.dpi.itsupply.model.enums.Plataforma;
 import com.dpi.itsupply.model.enums.StatusAnalise;
 import com.dpi.itsupply.model.enums.StatusErro;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -35,9 +36,11 @@ public class ErroQuiq {
     private Integer ano;
 
     @Column(name = "data_pedido", columnDefinition = "DATETIME", nullable = false)
+    // @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime dataPedido;
 
     @Column(name = "data_erro", columnDefinition = "DATETIME", nullable = false)
+    // @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime dataErro;
 
     @Column(name = "plataforma", columnDefinition = "ENUM", nullable = false)

@@ -10,8 +10,8 @@ import jakarta.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-public record ErroQuiqRecordDto(@NotBlank LocalDate dataPadronizada, @NotNull Mes mes, @NotNull Integer ano,
-                                @NotBlank LocalDateTime dataPedido, @NotBlank LocalDateTime dataErro,
+public record ErroQuiqRecordDto(@NotNull LocalDate dataPadronizada, @NotNull Mes mes, @NotNull Integer ano,
+                                @NotNull LocalDateTime dataPedido, @NotNull LocalDateTime dataErro,
                                 @NotNull Plataforma plataforma, @NotNull Short empresa, @NotBlank String numeroPedido,
                                 @NotNull Integer numeroPdv, @NotNull Byte codigoStatus, @NotBlank String erro,
                                 @NotBlank String motivoErro, @NotBlank String responsavelErro,

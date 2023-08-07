@@ -1,6 +1,7 @@
 package com.dpi.itsupply.controller;
 
 import com.dpi.itsupply.dto.ErroQuiqRecordDto;
+import com.dpi.itsupply.dto.UpdateErroQuiqRecordDto;
 import com.dpi.itsupply.model.ErroQuiq;
 import com.dpi.itsupply.repository.ErroQuiqRepository;
 import com.dpi.itsupply.service.ErroQuiqService;
@@ -33,6 +34,21 @@ public class ErroQuiqController {
         ErroQuiq erroQuiq = erroQuiqService.findById(id);
         return erroQuiq != null
                 ? ResponseEntity.status(HttpStatus.OK).body(erroQuiq)
+                : ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+    }
+
+    @PostMapping("/erros-quiq/")
+    public ResponseEntity<ErroQuiq> saveErroQuiq(@RequestBody @Valid ErroQuiqRecordDto erroQuiqRecordDto) {
+        erroQuiqService.save(erroQuiqRecordDto);
+        return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
+
+    @PutMapping("/erro-quiq/{id}")
+    public ResponseEntity<ErroQuiq> updateErroQuiq(@PathVariable(value = "id") Integer id,
+                                                   @RequestBody @Valid UpdateErroQuiqRecordDto updateErroQuiqRecordDto) {
+        ErroQuiq erroQuiq = erroQuiqService.findById(id);
+        return erroQuiq != null
+                ? ResponseEntity.status(HttpStatus.OK).body(erroQuiqService.update(id, updateErroQuiqRecordDto))
                 : ResponseEntity.status(HttpStatus.NOT_FOUND).build();
     }
 
