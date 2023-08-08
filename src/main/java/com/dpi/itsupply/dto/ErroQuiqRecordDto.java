@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 public record ErroQuiqRecordDto(@NotNull LocalDate dataPadronizada, @NotNull Mes mes, @NotNull Integer ano,
                                 @NotNull LocalDateTime dataPedido, @NotNull LocalDateTime dataErro,
                                 @NotNull Plataforma plataforma, @NotNull Short empresa, @NotBlank String numeroPedido,
-                                @NotNull Integer numeroPdv, @NotNull Byte codigoStatus, @NotBlank String erro,
+                                @NotNull Integer numeroPdv, @NotNull Short codigoStatus, @NotBlank String erro,
                                 @NotBlank String motivoErro, @NotBlank String responsavelErro,
                                 @NotNull StatusErro statusErro, @NotBlank String observacao,
                                 @NotBlank String responsavelAnalise, @NotNull StatusAnalise statusAnalise) {

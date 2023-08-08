@@ -1,19 +1,15 @@
 package com.dpi.itsupply.controller;
 
 import com.dpi.itsupply.dto.ErroQuiqRecordDto;
-import com.dpi.itsupply.dto.UpdateErroQuiqRecordDto;
 import com.dpi.itsupply.model.ErroQuiq;
-import com.dpi.itsupply.repository.ErroQuiqRepository;
 import com.dpi.itsupply.service.ErroQuiqService;
 import jakarta.validation.Valid;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/api")
@@ -45,10 +41,10 @@ public class ErroQuiqController {
 
     @PutMapping("/erro-quiq/{id}")
     public ResponseEntity<ErroQuiq> updateErroQuiq(@PathVariable(value = "id") Integer id,
-                                                   @RequestBody @Valid UpdateErroQuiqRecordDto updateErroQuiqRecordDto) {
+                                                   @RequestBody @Valid ErroQuiqRecordDto erroQuiqRecordDto) {
         ErroQuiq erroQuiq = erroQuiqService.findById(id);
         return erroQuiq != null
-                ? ResponseEntity.status(HttpStatus.OK).body(erroQuiqService.update(id, updateErroQuiqRecordDto))
+                ? ResponseEntity.status(HttpStatus.OK).body(erroQuiqService.update(id, erroQuiqRecordDto))
                 : ResponseEntity.status(HttpStatus.NOT_FOUND).build();
     }
 

@@ -56,8 +56,9 @@ public class ErroQuiq {
     @Column(name = "numero_pdv", columnDefinition = "INT", nullable = false)
     private Integer numeroPdv;
 
-    @Column(name = "codigo_status", columnDefinition = "TINYINT UNSIGNED", nullable = false)
-    private Byte codigoStatus;
+    // @Column(name = "codigo_status", columnDefinition = "TINYINT UNSIGNED", nullable = false)
+    @Column(name = "codigo_status", columnDefinition = "SMALLINT UNSIGNED", nullable = false)
+    private Short codigoStatus;
 
     @Column(name = "nome_erro", columnDefinition = "VARCHAR(100)", nullable = false)// Talvez mudar para um Enum
     private String erro;
