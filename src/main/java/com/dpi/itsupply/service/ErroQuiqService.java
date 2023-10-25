@@ -48,6 +48,8 @@ public class ErroQuiqService {
     public void delete(int id) {
         Optional<ErroQuiq> erroQuiq0 = erroQuiqRepository.findById(id);
         if (erroQuiq0.isPresent())
-            erroQuiq0.get();
+            erroQuiqRepository.delete(erroQuiq0.get());
+
+        // erroQuiq0.ifPresent(erroQuiq -> erroQuiqRepository.delete(erroQuiq));
     }
 }
