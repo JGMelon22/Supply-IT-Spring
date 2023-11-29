@@ -4,7 +4,6 @@ import com.dpi.itsupply.dto.ErroQuiqRecordDto;
 import com.dpi.itsupply.model.ErroQuiq;
 import com.dpi.itsupply.repository.ErroQuiqRepository;
 import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
