@@ -14,8 +14,10 @@ import java.util.Optional;
 
 @Service
 public class ErroQuiqService {
-    @Autowired
-    private ErroQuiqRepository erroQuiqRepository;
+    private final ErroQuiqRepository erroQuiqRepository;
+    public ErroQuiqService(ErroQuiqRepository erroQuiqRepository) {
+        this.erroQuiqRepository = erroQuiqRepository;
+    }
 
     public List<ErroQuiq> listAll() {
         return erroQuiqRepository.findAll();
