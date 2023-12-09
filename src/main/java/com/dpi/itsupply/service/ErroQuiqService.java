@@ -14,6 +14,7 @@ import java.util.Optional;
 @Service
 public class ErroQuiqService {
     private final ErroQuiqRepository erroQuiqRepository;
+
     public ErroQuiqService(ErroQuiqRepository erroQuiqRepository) {
         this.erroQuiqRepository = erroQuiqRepository;
     }
@@ -31,8 +32,9 @@ public class ErroQuiqService {
 
     public void save(ErroQuiqRecordDto erroQuiqRecordDto) {
         ErroQuiq erroQuiq = new ErroQuiq();
-        BeanUtils.copyProperties(erroQuiq, erroQuiqRecordDto);
-        save(erroQuiqRecordDto);
+        BeanUtils.copyProperties(erroQuiqRecordDto, erroQuiq);
+
+        erroQuiqRepository.save(erroQuiq);
     }
 
     public ErroQuiq update(Integer id, ErroQuiqRecordDto erroQuiqRecordDto) {
