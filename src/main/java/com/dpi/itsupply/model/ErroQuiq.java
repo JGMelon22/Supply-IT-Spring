@@ -4,7 +4,6 @@ import com.dpi.itsupply.model.enums.Mes;
 import com.dpi.itsupply.model.enums.Plataforma;
 import com.dpi.itsupply.model.enums.StatusAnalise;
 import com.dpi.itsupply.model.enums.StatusErro;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -72,7 +71,7 @@ public class ErroQuiq {
     @Column(name = "responsavel_erro", columnDefinition = "VARCHAR(20) DEFAULT 'Em Análise'", nullable = false)
     private String responsavelErro;
 
-    @Column(name = "status_erro", columnDefinition = "ENUM DEFAULT 'EM_ANALISE'")
+    @Column(name = "status_erro", columnDefinition = "ENUM")
     @Enumerated(EnumType.STRING)
     private StatusErro statusErro;
 
@@ -82,7 +81,7 @@ public class ErroQuiq {
     @Column(name = "responsavel_analise", columnDefinition = "VARCHAR(20)", nullable = true)
     private String responsavelAnalise;
 
-    @Column(name = "status_analise", columnDefinition = "ENUM DEFAULT 'EM_ANALISE'")
+    @Column(name = "status_analise", columnDefinition = "ENUM")
     @Enumerated(EnumType.STRING)
     private StatusAnalise statusAnalise;
 }

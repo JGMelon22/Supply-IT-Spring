@@ -2,6 +2,7 @@ package com.dpi.itsupply.controller;
 
 import com.dpi.itsupply.dto.ErroQuiqRecordDto;
 import com.dpi.itsupply.model.ErroQuiq;
+import com.dpi.itsupply.repository.ErroQuiqRepository;
 import com.dpi.itsupply.service.ErroQuiqService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,8 +15,11 @@ import java.util.List;
 @RestController
 @RequestMapping("/api")
 public class ErroQuiqController {
-    @Autowired
-    private ErroQuiqService erroQuiqService;
+    private final ErroQuiqService erroQuiqService;
+
+    public ErroQuiqController(ErroQuiqService erroQuiqService) {
+        this.erroQuiqService = erroQuiqService;
+    }
 
     @GetMapping("/erros-quiq")
     public ResponseEntity<List<ErroQuiq>> getAllErrosQuiq() {
@@ -33,7 +37,7 @@ public class ErroQuiqController {
                 : ResponseEntity.status(HttpStatus.NOT_FOUND).build();
     }
 
-    @PostMapping("/erros-quiq/")
+    @PostMapping("/erros-quiq")
     public ResponseEntity<ErroQuiq> saveErroQuiq(@RequestBody @Valid ErroQuiqRecordDto erroQuiqRecordDto) {
         erroQuiqService.save(erroQuiqRecordDto);
         return ResponseEntity.status(HttpStatus.CREATED).build();
