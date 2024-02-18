@@ -26,7 +26,7 @@ public class ErroQuiqService {
     public ErroQuiq findById(int id) {
         Optional<ErroQuiq> erroQuiq0 = erroQuiqRepository.findById(id);
         if (erroQuiq0.isEmpty())
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Erro do QUIQ não encontrado!");
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, String.format("Erro do QUIQ com id \"%d\" não encontrado!", id));
         return erroQuiq0.get();
     }
 
@@ -39,20 +39,20 @@ public class ErroQuiqService {
 
     public ErroQuiq update(Integer id, ErroQuiqRecordDto erroQuiqRecordDto) {
         Optional<ErroQuiq> erroQuiq0 = erroQuiqRepository.findById(id);
-        if (erroQuiq0.isPresent())
-            erroQuiq0.get();
+        if (erroQuiq0.isPresent()) {
+            ErroQuiq erroQuiq = erroQuiq0.get();
+            BeanUtils.copyProperties(erroQuiqRecordDto, erroQuiq);
+            return erroQuiqRepository.save(erroQuiq);
+        }
 
-        ErroQuiq erroQuiq = erroQuiq0.get();
-        BeanUtils.copyProperties(erroQuiqRecordDto, erroQuiq);
-
-        return erroQuiqRepository.save(erroQuiq);
+        throw new ResponseStatusException(HttpStatus.NOT_FOUND, String.format("Erro do QUIQ com id \"%d\" não encontrado!", id));
     }
 
     public void delete(int id) {
         Optional<ErroQuiq> erroQuiq0 = erroQuiqRepository.findById(id);
-        if (erroQuiq0.isPresent())
-            erroQuiqRepository.delete(erroQuiq0.get());
+        if (erroQuiq0.isEmpty())
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, String.format("Erro do QUIQ com id \"%d\" não encontrado!", id));
 
-        // erroQuiq0.ifPresent(erroQuiq -> erroQuiqRepository.delete(erroQuiq));
+        erroQuiqRepository.delete(erroQuiq0.get());
     }
 }
